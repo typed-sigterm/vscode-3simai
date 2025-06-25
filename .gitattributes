@@ -1,2 +1,2 @@
-syntaxes/*.svg linguist-detectable
+syntaxes/*.json linguist-detectable
 eslint.config.js -linguist-detectable
