@@ -1,0 +1,65 @@
+{
+  "publisher": "typed-sigterm",
+  "name": "3simai",
+  "displayName": "3simai",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.12.3",
+  "description": "Highlighting 3simai notations.",
+  "license": "MIT",
+  "repository": {
+    "url": "git+https://github.com/typed-sigterm/vscode-3simai.git"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "icon": "./icon.png",
+  "engines": {
+    "node": "22",
+    "vscode": "^1.75.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "3simai",
+        "aliases": [
+          "3simai",
+          "simai"
+        ],
+        "filenames": [
+          "maidata.txt"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icon.png",
+          "dark": "./icon.png"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "3simai",
+        "scopeName": "source.3simai",
+        "path": "./syntaxes/3simai.tmLanguage.json"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "vsce package --no-dependencies -o extension.vsix",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.16.1",
+    "@typed-sigterm/eslint-config": "^1.4.1",
+    "@vscode/vsce": "^3.5.0",
+    "eslint": "^9.29.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@vscode/vsce-sign",
+      "keytar"
+    ]
+  }
+}

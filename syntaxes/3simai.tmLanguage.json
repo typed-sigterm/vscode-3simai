@@ -1,0 +1,122 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "3simai",
+  "scopeName": "source.3simai",
+  "patterns": [
+    { "include": "#meta" },
+    { "include": "#bpm-definition" },
+    { "include": "#length-divider" },
+    { "include": "#chart-end" },
+    { "include": "#slide-notes" },
+    { "include": "#hold-notes" },
+    { "include": "#touch-notes" },
+    { "include": "#tap-notes" },
+    { "include": "#each-separator" },
+    { "include": "#pseudo-each" },
+    { "include": "#comma-separator" }
+  ],
+  "repository": {
+    "meta": {
+      "name": "keyword.control.meta.3simai",
+      "match": "^(&\\w+)(=)(.*)$",
+      "captures": {
+        "1": {
+          "name": "constant.language.meta.3simai"
+        },
+        "2": {
+          "name": "keyword.operator.meta.3simai"
+        },
+        "3": {
+          "name": "string.quoted.other.meta.3simai"
+        }
+      }
+    },
+    "bpm-definition": {
+      "name": "keyword.control.bpm.3simai",
+      "match": "^\\(\\d+(?:\\.\\d+)?\\)"
+    },
+    "length-divider": {
+      "name": "constant.language.length.3simai",
+      "match": "\\{(?:\\d+(?:\\.\\d+)?|#\\d+(?:\\.\\d+)?)\\}"
+    },
+    "chart-end": {
+      "name": "keyword.control.end.3simai",
+      "match": "\\bE\\b"
+    },
+    "slide-notes": {
+      "name": "entity.name.function.slide.3simai",
+      "match": "([1-8A-E]*)([?!@$]*[bx]*)([><^vpqszVw-]+)([1-8A-E]*)(\\[[^\\]]*\\])([bx]*)",
+      "captures": {
+        "1": {
+          "name": "constant.numeric.button.3simai"
+        },
+        "2": {
+          "name": "keyword.operator.modifier.3simai"
+        },
+        "3": {
+          "name": "keyword.operator.shape.3simai"
+        },
+        "4": {
+          "name": "constant.numeric.button.3simai"
+        },
+        "5": {
+          "name": "string.quoted.brackets.duration.3simai"
+        },
+        "6": {
+          "name": "keyword.operator.modifier.3simai"
+        }
+      }
+    },
+    "hold-notes": {
+      "name": "entity.name.function.hold.3simai",
+      "match": "([1-8]|[A-E][1-8]?|C)([bxh$@]*h[bxh$@]*)(\\[[^\\]]*\\])?",
+      "captures": {
+        "1": {
+          "name": "constant.numeric.button.3simai"
+        },
+        "2": {
+          "name": "keyword.operator.hold.3simai"
+        },
+        "3": {
+          "name": "string.quoted.brackets.duration.3simai"
+        }
+      }
+    },
+    "touch-notes": {
+      "name": "entity.name.function.touch.3simai",
+      "match": "([A-E][1-8]?|C)([bxhf$@]*)",
+      "captures": {
+        "1": {
+          "name": "constant.numeric.sensor.3simai"
+        },
+        "2": {
+          "name": "keyword.operator.modifier.3simai"
+        }
+      }
+    },
+    "tap-notes": {
+      "name": "entity.name.function.tap.3simai",
+      "match": "([1-8]+)([bx$@]*)",
+      "captures": {
+        "1": {
+          "name": "constant.numeric.button.3simai"
+        },
+        "2": {
+          "name": "keyword.operator.modifier.3simai"
+        }
+      }
+    },
+    "each-separator": {
+      "name": "constant.numeric.each.3simai",
+      "match": "/"
+    },
+    "pseudo-each": {
+      "name": "constant.numeric.pseudo-each.3simai",
+      "match": "`"
+    },
+    "comma-separator": {
+      "name": "constant.language.comma.3simai",
+      "match": ","
+    }
+  }
+}

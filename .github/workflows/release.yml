@@ -1,0 +1,43 @@
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      RUNNER_MIXPANEL_TOKEN: ${{ vars.RUNNER_MIXPANEL_TOKEN }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+      - uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - run: pnpm i
+      - run: pnpm run build
+
+      - name: Upload to GitHub Release
+        uses: csexton/release-asset-action@3567794e918fa3068116688122a76cdeb57b5f09 # v3
+        with:
+          file: extension.vsix
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          release-url: ${{ github.event.release.url }}
+
+      - name: Publish to Visual Studio Marketplace
+        uses: HaaLeo/publish-vscode-extension@ca5561daa085dee804bf9f37fe0165785a9b14db # v2
+        with:
+          extensionFile: extension.vsix
+          pat: ${{ secrets.VSCE_PAT }}
+          registryUrl: https://marketplace.visualstudio.com
+
+      - name: Publish to Open VSX Registry
+        uses: HaaLeo/publish-vscode-extension@ca5561daa085dee804bf9f37fe0165785a9b14db # v2
+        id: publishToOpenVSX
+        with:
+          extensionFile: extension.vsix
+          pat: ${{ secrets.OPEN_VSX_TOKEN }}
+          registryUrl: https://open-vsx.org
