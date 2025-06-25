@@ -1,0 +1,2 @@
+syntaxes/*.svg linguist-detectable
+eslint.config.js -linguist-detectable
